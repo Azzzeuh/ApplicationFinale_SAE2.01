@@ -40,6 +40,6 @@ public class Pioche {
 
 		Collections.shuffle(jetons);
 	}
-
+}
 
 

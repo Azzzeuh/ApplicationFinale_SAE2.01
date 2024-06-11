@@ -15,11 +15,13 @@ public class Joueur
 		this.plateauJoueur = null;
 	}
 
-	public void creerPlateauJoueur(PlateauIndividuel pltJ)
+	public void creerPlateauJoueur()
 	{
 		this.plateauJoueur = new PlateauIndividuel();
 	}
 
+	// Setter
+	public void              setScore(int score)         { this.score = score; }
 
 	// Acceseur
 	public int               getNumJoueur()     { return this.numJoueur;     }

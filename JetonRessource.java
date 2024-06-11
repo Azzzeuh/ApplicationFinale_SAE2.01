@@ -18,6 +18,11 @@ public enum JetonRessource implements IRessource
 		this.nom = nom;
 	}
 
+	public String getLibCourt()
+	{
+		return this.name();
+	}
+
 	public String getNom() { return this.nom; }
 
 	public String toString()
