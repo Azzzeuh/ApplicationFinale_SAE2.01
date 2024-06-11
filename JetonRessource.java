@@ -1,11 +1,13 @@
 public enum JetonRessource implements IRessource
 {
-    Al("aluminium"),
-    Ag("argent"),
-    Au("or"),
-    Co("cobalt"),
-    Fe("fer"),
-    Ni("nickel"),
+	Nr("Monnaie"),
+
+    Al("Aluminium"),
+    Ag("Argent"),
+    Au("Or"),
+    Co("Cobalt"),
+    Fe("Fer"),
+    Ni("Nickel"),
     Pt("Platine"),
     Ti("Titane");
 
