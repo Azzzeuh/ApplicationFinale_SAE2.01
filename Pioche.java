@@ -28,14 +28,14 @@ public class Pioche {
 	
 		for(int cpt=0; cpt<4; cpt++)
 		{ 
-		jetons.add(new Jeton(JetonRessource.Al));
-		jetons.add(new Jeton(JetonRessource.Ag));
-		jetons.add(new Jeton(JetonRessource.Au));
-		jetons.add(new Jeton(JetonRessource.Co));
-		jetons.add(new Jeton(JetonRessource.Fe));
-		jetons.add(new Jeton(JetonRessource.Ni));
-		jetons.add(new Jeton(JetonRessource.Pt));
-		jetons.add(new Jeton(JetonRessource.Ti)); 
+			jetons.add(new Jeton(JetonRessource.Al));
+			jetons.add(new Jeton(JetonRessource.Ag));
+			jetons.add(new Jeton(JetonRessource.Au));
+			jetons.add(new Jeton(JetonRessource.Co));
+			jetons.add(new Jeton(JetonRessource.Fe));
+			jetons.add(new Jeton(JetonRessource.Ni));
+			jetons.add(new Jeton(JetonRessource.Pt));
+			jetons.add(new Jeton(JetonRessource.Ti)); 
 		}
 
 		Collections.shuffle(jetons);
