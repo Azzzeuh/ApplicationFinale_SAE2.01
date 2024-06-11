@@ -9,20 +9,21 @@ public class Mine
 
     private ArrayList<Route> listeRoute;
 
-    public Mine(String nomMine,int x,int y)
+    public Mine(String nomMine, int x, int y)
     {
         this.nomMine = nomMine;
+        this.num = ++ nbMine;
         this.x = x;
         this.y = y;
-        this.num = ++ nbMine;
     }
 
-    public String getNom(){return this.nomMine;}
-    public int getX(){return this.x;}
-    public int getY(){return this.y;}
-    public int getNumMine(){return this.nbMine;}
+	// Accesseurs
+    public String getNom()                {return this.nomMine;   }
+    public int getX()                     {return this.x;         }
+    public int getY()                     {return this.y;         }
+    public int getNumMine()               {return this.nbMine;    }
     public ArrayList<Route> getListeMine(){return this.listeRoute;}
-    public Mine getMine(){return this;}
+    public Mine getMine()                 {return this;}
 
 
     public boolean ajouterRoute(Route route)
