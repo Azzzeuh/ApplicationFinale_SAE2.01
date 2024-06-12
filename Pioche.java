@@ -35,5 +35,11 @@ public class Pioche {
 
 		Collections.shuffle(jetons);
 	}
+<<<<<<< HEAD
 
 }
+=======
+}
+
+
+>>>>>>> f402761aeffe95b87aa368b4578eb07872d0cb42
