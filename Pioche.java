@@ -1,28 +1,31 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Pioche {
+public class Pioche
+{
 	private ArrayList<Jeton> jetons;
 
-	public Pioche() {
+	public Pioche()
+	{
 		this.jetons = new ArrayList<>();
 		this.initPioche();
 	}
 
-	public Jeton tirerJeton() {
-		if (this.jetons.isEmpty()) {
-			return null;
-		} else {
-			return this.jetons.remove(0);
-		}
+	public Jeton tirerJeton()
+	{
+		if (this.jetons.isEmpty()) { return null; }
+		else { return this.jetons.remove(0); }
 	}
 
-	private void initPioche() {
-		for (int cpt = 0; cpt < 8; cpt++) {
+	private void initPioche()
+	{
+		for (int cpt = 0; cpt < 8; cpt++)
+		{
 			jetons.add(new Jeton(JetonRessource.Nr));
 		}
 
-		for (int cpt = 0; cpt < 4; cpt++) {
+		for (int cpt = 0; cpt < 4; cpt++)
+		{
 			jetons.add(new Jeton(JetonRessource.Al));
 			jetons.add(new Jeton(JetonRessource.Ag));
 			jetons.add(new Jeton(JetonRessource.Au));
@@ -35,11 +38,4 @@ public class Pioche {
 
 		Collections.shuffle(jetons);
 	}
-<<<<<<< HEAD
-
 }
-=======
-}
-
-
->>>>>>> f402761aeffe95b87aa368b4578eb07872d0cb42
