@@ -9,10 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import java.util.Scanner;
-import java.io.PrintWriter;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
 
 import iut.algo.*;
 
@@ -90,8 +87,9 @@ public class FrameMenu extends JFrame implements ActionListener
 		Decomposeur dec;
 		Scanner sc;
 
-		Sommet sDepart;
-		Sommet sArriver;
+		int nbSections;
+		Sommet sDepart  = null;
+		Sommet sArriver = null;
 
 
 		// Action du bouton charger
@@ -114,19 +112,20 @@ public class FrameMenu extends JFrame implements ActionListener
 
 					if(dec.getChar(0)=='S')
 					{
-						String nom = dec.getString(1);
-						int x = dec.getInt(2);
-						int y = dec.getInt(3);
-						this.listSommet.add(new Sommet(nom, x, y));
+						this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3)));
 					}
 					if(dec.getChar(0)=='R')
 					{
 						for(Sommet s: listSommet)
 						{
+							System.out.println(s.getNom());
+							System.out.println(dec.getString(2));
 							if(dec.getString(2) == s.getNom()) { sDepart  = s; }
-							if(dec.getString(3) == s.getNom()) { sArriver = s; }
+							if(dec.getString(3) == s.getNom()) { sArriver = s; }// ne fonctionne pas ? probleme de type ? Sommet != String ?
+							if (sDepart!= null)
+								System.out.println(sDepart.toString());
 						}
-						// this.listRoute.add(new creerRoute(dec.getInt(1), sDepart, sArriver));
+						this.listRoute.add(new Route(dec.getInt(1), sDepart, sArriver));
 					}
 				}
 
@@ -135,13 +134,17 @@ public class FrameMenu extends JFrame implements ActionListener
 			}
 			catch (Exception exp){ exp.printStackTrace(); }
 		
-			//System.out.println(listSommet.get(0));
-		
+			/*fonctionnes
 			for(Sommet s: listSommet)
-					{
-						System.out.println(s.toString());
-					}
-				
+			{
+				System.out.println(s.toString());
+			}
+
+			for(Route r: listRoute)
+			{
+				System.out.println(r.toString());
+			}*/
+
 
 		}
 
