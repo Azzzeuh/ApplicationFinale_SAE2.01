@@ -1,0 +1,8 @@
+S	MineJaune1	125	354
+S	MineJaune2	200	300
+S	MineJaune3	50	400
+S	MineJaune4	700	354
+S	MineJaune5	125	700
+
+R	2	MineJaune1	MineJaune2
+
