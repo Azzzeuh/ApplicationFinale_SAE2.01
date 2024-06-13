@@ -97,6 +97,8 @@ public class FrameMenu extends JFrame implements ActionListener
 		Sommet sDepart  = null;
 		Sommet sArriver = null;
 
+		int cpt = 0;
+
 
 		// Action du bouton charger
 		if(e.getSource() == this.chargerJButton)
@@ -110,12 +112,16 @@ public class FrameMenu extends JFrame implements ActionListener
 			{
 				sc = new Scanner    (new FileInputStream("ihm/theme/texte.txt"),  "UTF-8");
 
+				
 				while (sc.hasNextLine())
 				{
+					System.out.println(cpt++);
 
 					// Décomposeur
 					dec = new Decomposeur(sc.nextLine());
 
+					if (dec.getString(1) != null)
+                    {
 					if(dec.getChar(0)=='S')
 					{
 						this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3)));
@@ -130,7 +136,9 @@ public class FrameMenu extends JFrame implements ActionListener
 						}
 						this.listRoute.add(new Route(dec.getInt(1), sDepart, sArriver));
 					}
-				}
+					}
+				
+			}
 
 
 				sc.close();
