@@ -12,7 +12,7 @@ public class Sommet
 
     private ArrayList<Route> listeRoute;
 
-    public Sommet(String nomSommet, int x, int y)
+    public Sommet(String nom, int x, int y)
     {
         this.nom = nom;
         this.num = ++ nbSommet;
