@@ -69,14 +69,20 @@ public class FrameMenu extends JFrame implements ActionListener
 	// Vider les listes
 	public ArrayList<Route> viderListeRoute(ArrayList<Route> liste)
 	{
-		while(liste.isEmpty() == false) { liste.remove(0); }
+		for(Route r : liste)
+		{
+			liste.remove(r);
+		}
 		return liste;
-
 	}
 
 	public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> liste)
 	{
-		while(liste.isEmpty() == false) { liste.remove(0); }
+		for(Sommet s : liste)
+		{
+			liste.remove(s);
+			Sommet.resetNbSommet();
+		}
 		return liste;
 
 	}
