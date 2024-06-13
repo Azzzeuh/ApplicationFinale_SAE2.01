@@ -12,7 +12,7 @@ public class Sommet
 
     private ArrayList<Route> listeRoute;
 
-    public Sommet(String nomSommet, int x, int y)
+    public Sommet(String nom, int x, int y)
     {
         this.nom = nom;
         this.num = ++ nbSommet;
@@ -27,6 +27,7 @@ public class Sommet
     public int getY()         { return this.y;   }
     public ArrayList<Route> getListeRoute() {return this.listeRoute;}
 
+    public void resetNbSommet() { nbSommet = 0; }
 
     public boolean ajouterRoute(Route route)
     {
