@@ -3,4 +3,44 @@ S	MineJaune2	200	300
 S	MineJaune3	50	400
 S	MineJaune4	700	354
 S	MineJaune5	125	700
+S	MineBleu2	225	400
+S	MineBleu3	200	425
+S	MineBleu4	50	375
+S	MineBleu6	720	304
+S	MineBleu8	120	700
+S	MineGris0	127	304
+S	MineGris1	200	300
+S	MineGris2	50	400
+S	MineGris3	700	354
+S	MineGris4	125	700
+S	MineVert2	125	100
+S	MineVert3	153	54
+S	MineVert4	130	77
+S	MineVert6	170	65
+S	MineVert8	165	70
+S	MineRouge1	425	254
+S	MineRouge2	260	360
+S	MineRouge3	50	400
+S	MineRouge4	700	354
+S	MineRouge5	125	700
+S	MineMarron1	125	354
+S	MineMarron2	200	300
+S	MineMarron3	50	400
+S	MineMarron4	700	354
+S	MineMarron5	125	700
 R	2	MineJaune1	MineJaune2
+R	2	MineJaune3	MineJaune4
+R	2	MineJaune5	MineJaune2
+R	2	MineGris2	MineJaune4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+R	2	MineGris3	MineVert4
+
+
+
+
