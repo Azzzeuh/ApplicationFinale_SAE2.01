@@ -87,7 +87,6 @@ public class FrameMenu extends JFrame implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		String nom;
 		Decomposeur dec;
 		Scanner sc;
 
@@ -105,24 +104,29 @@ public class FrameMenu extends JFrame implements ActionListener
 			// Scanner
 			try
 			{
-				sc = new Scanner    (new FileInputStream("texte.txt"),  "UTF-8");
+				sc = new Scanner    (new FileInputStream("ihm/theme/texte.txt"),  "UTF-8");
 
 				while (sc.hasNextLine())
 				{
+
+					// Décomposeur
 					dec = new Decomposeur(sc.nextLine());
-					if(dec.getString(0)=="S")
+
+					if(dec.getChar(0)=='S')
 					{
-						System.out.println(sc.nextLine());
-						//this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3)));
+						String nom = dec.getString(1);
+						int x = dec.getInt(2);
+						int y = dec.getInt(3);
+						this.listSommet.add(new Sommet(nom, x, y));
 					}
-					if(dec.getString(0)=="R")
+					if(dec.getChar(0)=='R')
 					{
-						/*for(Sommet s: listSommet)
+						for(Sommet s: listSommet)
 						{
 							if(dec.getString(2) == s.getNom()) { sDepart  = s; }
 							if(dec.getString(3) == s.getNom()) { sArriver = s; }
-						}*/
-						//this.listRoute.add(new creerRoute(dec.getInt(1), sDepart, sArriver));
+						}
+						// this.listRoute.add(new creerRoute(dec.getInt(1), sDepart, sArriver));
 					}
 				}
 
@@ -130,6 +134,14 @@ public class FrameMenu extends JFrame implements ActionListener
 				sc.close();
 			}
 			catch (Exception exp){ exp.printStackTrace(); }
+		
+			//System.out.println(listSommet.get(0));
+		
+			for(Sommet s: listSommet)
+					{
+						System.out.println(s.toString());
+					}
+				
 
 		}
 
