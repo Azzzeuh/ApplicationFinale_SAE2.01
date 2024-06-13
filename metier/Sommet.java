@@ -27,6 +27,7 @@ public class Sommet
     public int getY()         { return this.y;   }
     public ArrayList<Route> getListeRoute() {return this.listeRoute;}
 
+    public void resetNbSommet() { nbSommet = 0; }
 
     public boolean ajouterRoute(Route route)
     {
