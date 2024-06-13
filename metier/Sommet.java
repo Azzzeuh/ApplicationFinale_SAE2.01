@@ -47,4 +47,16 @@ public class Sommet
         }
         return false;
     }
+
+    public String toString()
+    {
+        String sSommet = "";
+
+        sSommet += "Numéro   : " + this.getNumSommet() + '\n' 
+                 + "Nom      : " + this.nom + '\n' 
+                 + "Coord. X : " + this.x   + '\n' 
+                 + "Coord. Y : " + this.y   + '\n'; 
+
+        return sSommet;
+    }
 }

@@ -25,6 +25,17 @@ public class Route {
 
 	}
 
+	public String toString()
+	{
+		String sRoute = "";
+
+		sRoute += "Sommet de départ  : " + this.sommetDepart + '\n' 
+				+ "Sommet d'arrivé   : " + this.sommetArriver + '\n'
+				+ "Nombre de section : " + this.nbSections + '\n';
+
+		return sRoute;
+	}
+
 	// Accesseurs
 	public int    getNbSelections() { return this.nbSections;    }
 	public Sommet getMineDepart()   { return this.sommetDepart;  }

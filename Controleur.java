@@ -1,5 +1,3 @@
-package application;
-
 import metier.*;
 import ihm.*;
 
