@@ -29,8 +29,8 @@ public class Route {
 	{
 		String sRoute = "";
 
-		sRoute += "Sommet de départ  : " + this.sommetDepart + '\n' 
-				+ "Sommet d'arrivé   : " + this.sommetArriver + '\n'
+		sRoute += "Sommet de départ  : " + this.sommetDepart.getNom() + '\n' 
+				+ "Sommet d'arrivé   : " + this.sommetArriver.getNom() + '\n'
 				+ "Nombre de section : " + this.nbSections + '\n';
 
 		return sRoute;

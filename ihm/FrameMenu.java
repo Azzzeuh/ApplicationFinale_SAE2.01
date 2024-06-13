@@ -118,12 +118,9 @@ public class FrameMenu extends JFrame implements ActionListener
 					{
 						for(Sommet s: listSommet)
 						{
-							System.out.println(s.getNom());
-							System.out.println(dec.getString(2));
-							if(dec.getString(2) == s.getNom()) { sDepart  = s; }
-							if(dec.getString(3) == s.getNom()) { sArriver = s; }// ne fonctionne pas ? probleme de type ? Sommet != String ?
-							if (sDepart!= null)
-								System.out.println(sDepart.toString());
+							if(dec.getString(2).equals(s.getNom())) { sDepart  = s; }
+							if(dec.getString(3).equals(s.getNom())) { sArriver = s; }
+
 						}
 						this.listRoute.add(new Route(dec.getInt(1), sDepart, sArriver));
 					}
@@ -134,7 +131,6 @@ public class FrameMenu extends JFrame implements ActionListener
 			}
 			catch (Exception exp){ exp.printStackTrace(); }
 		
-			/*fonctionnes
 			for(Sommet s: listSommet)
 			{
 				System.out.println(s.toString());
@@ -143,7 +139,7 @@ public class FrameMenu extends JFrame implements ActionListener
 			for(Route r: listRoute)
 			{
 				System.out.println(r.toString());
-			}*/
+			}
 
 
 		}
