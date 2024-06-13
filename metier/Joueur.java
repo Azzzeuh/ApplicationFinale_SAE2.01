@@ -8,7 +8,7 @@ public class Joueur {
 	private PlateauIndividuel plateauJoueur;
 
 	public Joueur() {
-		this.numJoueur++;
+		numJoueur++;
 		this.score = 0;
 
 		this.plateauJoueur = null;
@@ -25,7 +25,7 @@ public class Joueur {
 
 	// Acceseur
 	public int getNumJoueur() {
-		return this.numJoueur;
+		return numJoueur;
 	}
 
 	public PlateauIndividuel getPlateauJoueur() {

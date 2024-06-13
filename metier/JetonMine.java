@@ -14,7 +14,7 @@ public class JetonMine implements IRessource
 
 	public JetonMine(String couleur, int valeur)
 	{
-		this.nbMine++;
+		nbMine++;
 		this.couleur = couleur;
 		this.valeur  = valeur;
 
