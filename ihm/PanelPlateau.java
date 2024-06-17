@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Panel;
 
 public class PanelPlateau extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
@@ -18,12 +19,14 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public PanelPlateau(FrameMenu frameMenu)
 	{
-		this.frameMenu  = new FrameMenu();
-
+		this.frameMenu = frameMenu;
+		
 		this.sommetList = new ArrayList<>();
 		this.routeList  = new ArrayList<>();
 	}
 
+	public void setSommetList(ArrayList<Sommet> list) { this.sommetList = list; }
+	public void setRouteList (ArrayList<Route> list)  { this.routeList  = list; }
 
 	// Déssiner
 	public void actionPerformed ( ActionEvent e )
@@ -45,17 +48,9 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		this.repaint();
 	}
 
-	public void redessinerRoute() 
-	{
-		repaint();
-	}
-
-
-
 	public void paintComponent(Graphics g)	
 	{
 		super.paintComponent(g);
-
 		// Dessiner les routes avec les tronçons
 		for(Route route : routeList)
 		{
@@ -68,8 +63,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
             int x1 = sommetDepart.getX();
             int y1 = sommetDepart.getY();
-            int x2 = sommetArrivee.getX();
-            int y2 = sommetArrivee.getY();
+            int x2 = sommetArriver.getX();
+            int y2 = sommetArriver.getY();
 
             double distanceTotale = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
             double longueurTotale = nbSections * 10 + (nbSections - 1) * espace;
@@ -82,7 +77,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
             else
             {
-                double longueurSegment = (distanceTotale - (nbSections - 1) * espace) / nbTroncons;
+                double longueurSegment = (distanceTotale - (nbSections - 1) * espace) / nbSections;
 
                 for (int i = 0; i < nbSections; i++) 
                 {
@@ -100,15 +95,52 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
         }
         
 
-		// Dessiner ville
-        for (Sommet sommet : SommetList )
+		// Dessiner sommet
+        for (Sommet sommet : this.sommetList )
         {
             g.setColor(Color.BLUE);
             g.fillOval(sommet.getX() - 13, sommet.getY() - 13, 26, 26);
             g.setColor(Color.BLACK);
             g.drawOval(sommet.getX() - 13, sommet.getY() - 13, 26, 26);
+			g.drawString(sommet.getNom(), sommet.getX() - 16, sommet.getY() - 25);
+			g.drawString("x: " + sommet.getX() + " y: " + sommet.getY(), sommet.getX() + 16, sommet.getY() + 25);
         }
     }
+
+
+	public void mouseDragged(MouseEvent e) 
+	{
+
+	}
+
+	public void mouseMoved(MouseEvent e) 
+	{
+
+	}
+
+	public void mouseClicked(MouseEvent e) 
+	{
+
+	}
+
+	public void mousePressed(MouseEvent e) 
+	{
+
+	}
+
+	public void mouseReleased(MouseEvent e) 
+	{
+
+	}
+	public void mouseEntered(MouseEvent e) 
+	{
+
+	}
+
+	public void mouseExited(MouseEvent e) 
+	{
+
+	}
 
 
 }

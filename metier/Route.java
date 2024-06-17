@@ -37,7 +37,7 @@ public class Route {
 	}
 
 	// Accesseurs
-	public int    getNbSelections() { return this.nbSections;    }
-	public Sommet getMineDepart()   { return this.sommetDepart;  }
-	public Sommet getMineArriver()  { return this.sommetArriver; }
+	public int    getNbSections() { return this.nbSections;    }
+	public Sommet getSommetDepart()   { return this.sommetDepart;  }
+	public Sommet getSommetArriver()  { return this.sommetArriver; }
 }

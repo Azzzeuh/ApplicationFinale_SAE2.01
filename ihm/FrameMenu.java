@@ -27,11 +27,11 @@ public class FrameMenu extends JFrame implements ActionListener
 	private ArrayList<Sommet> listSommet;
 	private ArrayList<Route>  listRoute;
 
-
+	private PanelPlateau panelPlateau;
 	/* Instructions */
 	/*--------------*/
 
-	public FrameMenu(int x, int y)
+	public FrameMenu(int x, int y, PanelPlateau panelPlateau)
 	{
 		// Initialisation de la fenêtre
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,6 +40,7 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.setLocation(x, y);
 		this.setLayout(new FlowLayout());
 
+		this.panelPlateau = panelPlateau;
 
 		// Initialisation des Boutton
 		this.chargerJButton = new JButton("CHARGER");
@@ -63,6 +64,11 @@ public class FrameMenu extends JFrame implements ActionListener
 
 		this.setVisible(true);
 
+	}
+
+	public void setPanelPlateau(PanelPlateau panel)
+	{
+		this.panelPlateau = panel;
 	}
 
 
@@ -138,19 +144,10 @@ public class FrameMenu extends JFrame implements ActionListener
 			}
 			catch (Exception exp){ exp.printStackTrace(); }
 
+			this.panelPlateau.setSommetList(this.listSommet);
+			this.panelPlateau.setRouteList(this.listRoute);
 
-
-			for(Sommet s: listSommet)
-			{
-				System.out.println(s.toString());
-			}
-
-			for(Route r: listRoute)
-			{
-				System.out.println(r.toString());
-			}
-
-
+			this.panelPlateau.repaint();
 		}
 
 
@@ -163,7 +160,8 @@ public class FrameMenu extends JFrame implements ActionListener
 
 	}
 
-
+	public ArrayList<Sommet> getSommetList() { return this.listSommet; }
+	public ArrayList<Route>  getRouteList()  { return this.listRoute;  }
 
 
 }
