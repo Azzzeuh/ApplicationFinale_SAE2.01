@@ -108,7 +108,7 @@ public class FrameMenu extends JFrame implements ActionListener
 			// Scanner
 			try
 			{
-				sc = new Scanner    (new FileInputStream("ihm/theme/data.txt"),  "UTF-8");
+				sc = new Scanner    (new FileInputStream("ihm/theme/texte.txt"),  "UTF-8");
 
 				
 				while (sc.hasNextLine())
