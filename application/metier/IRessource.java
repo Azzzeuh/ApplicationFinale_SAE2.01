@@ -1,4 +1,4 @@
-package metier;
+package application.metier;
 
 public interface IRessource
 {

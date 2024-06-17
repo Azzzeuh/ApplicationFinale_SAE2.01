@@ -1,4 +1,4 @@
-package metier;
+package application.metier;
 
 import java.util.ArrayList;
 import java.util.Collections;

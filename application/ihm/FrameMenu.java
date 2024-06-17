@@ -1,7 +1,8 @@
-package ihm;
+package application.ihm;
 
-import metier.*;
 import javax.swing.*;
+
+import application.metier.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,8 @@ public class FrameMenu extends JFrame implements ActionListener
 	private JButton chargerJButton;
 	private JButton   jouerJButton;
 
-
+	private ArrayList<Sommet> listSommet;
+	private ArrayList<Route> listRoute;
 
 	private PanelPlateau panelPlateau;
 	/* Instructions */

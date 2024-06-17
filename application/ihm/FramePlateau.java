@@ -1,7 +1,9 @@
-package ihm;
+package application.ihm;
 
-import metier.*;
 import javax.swing.*;
+
+import application.metier.*;
+
 import java.awt.*;
 
 public class FramePlateau extends JFrame {

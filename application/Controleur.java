@@ -1,5 +1,10 @@
-import metier.*;
-import ihm.*;
+package application;
+
+
+import java.util.ArrayList;
+
+import application.ihm.*;
+import application.metier.*;
 
 public class Controleur
 {
@@ -28,7 +33,7 @@ public class Controleur
 		return liste;
 	}
 
-	/*public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> liste)
+	public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> liste)
 	{
 		for(Sommet s : liste)
 		{
@@ -37,11 +42,12 @@ public class Controleur
 		}
 		return liste;
 
-		public ArrayList<Sommet> getSommetList() { return this.listSommet; }
-		public ArrayList<Route>  getRouteList()  { return this.listRoute;  }
+		
 
-	}*/
-
+	}
+	
+	public ArrayList<Sommet> getSommetList() { return this.listSommet; }
+	public ArrayList<Route>  getRouteList()  { return this.listRoute;  }
 
 	public static void main(String[] a)
 	{
