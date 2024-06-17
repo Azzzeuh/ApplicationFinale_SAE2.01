@@ -67,6 +67,29 @@ public class FrameMenu extends JFrame implements ActionListener
 
 	}
 
+	public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> listSommet)
+	{
+		if(this.listRoute.isEmpty())
+		{
+			for(Sommet s : listSommet)
+				listSommet.remove(s);
+			Sommet.resetNbSommet();
+		}
+
+		return listSommet;
+	}
+
+	public ArrayList<Route> viderListeRoute(ArrayList<Route> listRoute)
+	{
+		if(this.listRoute.isEmpty())
+		{
+			for(Route r : listRoute)
+				listRoute.remove(r);
+		}
+
+		return listRoute;
+	}
+
 	public void setPanelPlateau(PanelPlateau panel)
 	{
 		this.panelPlateau = panel;
@@ -85,9 +108,11 @@ public class FrameMenu extends JFrame implements ActionListener
 		// Action du bouton charger
 		if(e.getSource() == this.chargerJButton)
 		{
-			//this.viderListeRoute(this.listRoute);
-			//this.viderListeSommet(this.listSommet);
-
+			if(!this.listSommet.isEmpty() && !this.listRoute.isEmpty())
+			{
+				this.viderListeRoute(this.listRoute);
+				this.viderListeSommet(this.listSommet);
+			}
 
 			// Scanner
 			try
@@ -124,6 +149,8 @@ public class FrameMenu extends JFrame implements ActionListener
 
 			this.panelPlateau.setSommetList(this.listSommet);
 			this.panelPlateau.setRouteList(this.listRoute);
+
+			System.out.println(this.listSommet.get(10).getNumSommet());
 
 			this.panelPlateau.repaint();
 		}
