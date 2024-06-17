@@ -1,9 +1,9 @@
 package application.ihm;
 
-import javax.swing.*;
-
 import application.metier.*;
+import application.Controleur;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class FramePlateau extends JFrame {
@@ -12,16 +12,16 @@ public class FramePlateau extends JFrame {
 
 	private PanelPlateau panelPlateau;
 
-	public FramePlateau( int x, int y)
+	public FramePlateau(Controleur ctrl, int x, int y)
 	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Plateau");
 		this.setLocation(x, y);
-		this.setSize(1000, 800);
+		this.setSize(1000, 884);
 
 		this.frameMenu = new FrameMenu(this.getWidth() + (int) this.getLocation().getX() + 30, (int) this.getLocation().getY(), null);
 		
-		this.panelPlateau = new PanelPlateau(frameMenu);
+		this.panelPlateau = new PanelPlateau(ctrl, frameMenu);
 
 		this.frameMenu.setPanelPlateau(panelPlateau);
 

@@ -2,11 +2,13 @@ package application.ihm;
 
 import javax.swing.*;
 
+import application.Controleur;
 import application.metier.*;
 
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import java.awt.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Panel;
@@ -18,12 +20,16 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private ArrayList<Sommet> sommetList;
 	private ArrayList<Route>  routeList;
 
-	public PanelPlateau(FrameMenu frameMenu)
+	private Image             imgFond;
+
+	public PanelPlateau(Controleur ctrl, FrameMenu frameMenu)
 	{
 		this.frameMenu = frameMenu;
-		
+
 		this.sommetList = new ArrayList<>();
 		this.routeList  = new ArrayList<>();
+
+		this.imgFond = getToolkit().getImage ( ctrl.getImageFond() );
 	}
 
 	public void setSommetList(ArrayList<Sommet> list) { this.sommetList = list; }
@@ -52,6 +58,13 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	public void paintComponent(Graphics g)	
 	{
 		super.paintComponent(g);
+
+		// Ajout de l'image du fond
+		if ( imgFond != null )
+		{
+			g.drawImage ( this.imgFond, 0 , 0, 1000, 884, this);
+		}
+
 		// Dessiner les routes avec les tronçons
 		for(Route route : routeList)
 		{
