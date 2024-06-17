@@ -1,9 +1,8 @@
 package application.ihm;
 
-import javax.swing.*;
-
 import application.metier.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +45,9 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.chargerJButton = new JButton("CHARGER");
 		this.jouerJButton   = new JButton("JOUER");
 
+		// Initialisation des listes
+		this.listSommet = new ArrayList<>();
+		this.listRoute = new ArrayList<>();
 
 		// Ajout des Composants
 		this.add(chargerJButton);
@@ -64,9 +66,6 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.setVisible(true);
 
 	}
-
-	public ArrayList<Sommet> getSommetList() { return this.listSommet; }
-	public ArrayList<Route>  getRouteList()  { return this.listRoute;  }
 
 	public void setPanelPlateau(PanelPlateau panel)
 	{
@@ -93,7 +92,7 @@ public class FrameMenu extends JFrame implements ActionListener
 			// Scanner
 			try
 			{
-				sc = new Scanner    (new FileInputStream("ihm/theme/texte.txt"),  "UTF-8");
+				sc = new Scanner    (new FileInputStream("application/ihm/theme/texte.txt"),  "UTF-8");
 
 				
 				while (sc.hasNextLine())

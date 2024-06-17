@@ -1,8 +1,5 @@
 package application;
 
-
-import java.util.ArrayList;
-
 import application.ihm.*;
 import application.metier.*;
 
