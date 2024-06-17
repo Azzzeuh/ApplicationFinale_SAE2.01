@@ -65,6 +65,9 @@ public class FrameMenu extends JFrame implements ActionListener
 
 	}
 
+	public ArrayList<Sommet> getSommetList() { return this.listSommet; }
+	public ArrayList<Route>  getRouteList()  { return this.listRoute;  }
+
 	public void setPanelPlateau(PanelPlateau panel)
 	{
 		this.panelPlateau = panel;
