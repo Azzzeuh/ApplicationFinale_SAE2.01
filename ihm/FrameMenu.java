@@ -23,9 +23,7 @@ public class FrameMenu extends JFrame implements ActionListener
 	private JButton chargerJButton;
 	private JButton   jouerJButton;
 
-	// Arraylist
-	private ArrayList<Sommet> listSommet;
-	private ArrayList<Route>  listRoute;
+
 
 	private PanelPlateau panelPlateau;
 	/* Instructions */
@@ -58,8 +56,7 @@ public class FrameMenu extends JFrame implements ActionListener
 
 
 		// Création des ArrayList
-		this.listSommet = new ArrayList<>();
-		this.listRoute = new ArrayList<>();
+
 
 
 		this.setVisible(true);
@@ -70,29 +67,6 @@ public class FrameMenu extends JFrame implements ActionListener
 	{
 		this.panelPlateau = panel;
 	}
-
-
-	// Vider les listes
-	public ArrayList<Route> viderListeRoute(ArrayList<Route> liste)
-	{
-		for(Route r : liste)
-		{
-			liste.remove(r);
-		}
-		return liste;
-	}
-
-	public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> liste)
-	{
-		for(Sommet s : liste)
-		{
-			liste.remove(s);
-			Sommet.resetNbSommet();
-		}
-		return liste;
-
-	}
-
 
 	public void actionPerformed(ActionEvent e)
 	{
@@ -160,8 +134,7 @@ public class FrameMenu extends JFrame implements ActionListener
 
 	}
 
-	public ArrayList<Sommet> getSommetList() { return this.listSommet; }
-	public ArrayList<Route>  getRouteList()  { return this.listRoute;  }
+
 
 
 }
