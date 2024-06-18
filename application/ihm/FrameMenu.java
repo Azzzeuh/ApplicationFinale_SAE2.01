@@ -129,7 +129,10 @@ public class FrameMenu extends JFrame implements ActionListener
 
 					if(dec.getChar(0)=='S')
 					{
-						this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3)));
+						if(dec.getInt(2) < 0)
+							this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3)));
+						else if(dec.getInt(2) >= 0)
+							this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3), dec.getInt(4)));
 					}
 					if(dec.getChar(0)=='R')
 					{
