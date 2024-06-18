@@ -140,8 +140,8 @@ public class FrameMenu extends JFrame implements ActionListener
 					{
 						for(Sommet s: listSommet)
 						{
-							if(dec.getString(2).equals(s.getNom())) { sDepart  = s; }
-							if(dec.getString(3).equals(s.getNom())) { sArriver = s; }
+							if(dec.getInt(2)==s.getNumSommet()) { sDepart  = s; }
+							if(dec.getInt(3)==s.getNumSommet()) { sArriver = s; }
 
 						}
 						this.listRoute.add(new Route(dec.getInt(1), sDepart, sArriver));

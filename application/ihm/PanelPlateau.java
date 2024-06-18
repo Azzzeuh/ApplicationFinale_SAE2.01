@@ -104,7 +104,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
                     int x2Segment = (int) (x1 + t2 * (x2 - x1));
                     int y2Segment = (int) (y1 + t2 * (y2 - y1));
 
-                    g.drawLine(x1Segment, y1Segment, x2Segment, y2Segment);
+                    if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 22, x2Segment + 20, y2Segment + 22); }
+                    else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
                 }
             }
         }
@@ -114,9 +115,17 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
         for (Sommet sommet : this.sommetList )
         {
             // Dessiner sommet
+			if(sommet.getNom().equals("NR"))
+			{
+				this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
+				g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 44, this );
+			}
 
-            this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
-            g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), this);
+			else
+			{
+				this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + "_clair.png" );
+				g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 70, this );
+			}
 
     	}
     }

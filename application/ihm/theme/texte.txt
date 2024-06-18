@@ -5,3 +5,5 @@ S	Mine_Jaune	3	50	400
 S	Mine_Jaune	4	700	354
 S	Mine_Jaune	5	125	700
 S	Mine_Bleu	2	225	400
+R	2	1	2
+R	1	1	3
