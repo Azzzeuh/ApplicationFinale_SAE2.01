@@ -17,7 +17,7 @@ public class FramePlateau extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Plateau");
 		this.setLocation(x, y);
-		this.setSize(1000, 884);
+		this.setSize(1000, 915);
 
 		this.frameMenu = new FrameMenu(this.getWidth() + (int) this.getLocation().getX() + 30, (int) this.getLocation().getY(), null);
 		

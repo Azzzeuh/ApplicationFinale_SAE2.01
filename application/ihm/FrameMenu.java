@@ -129,9 +129,6 @@ public class FrameMenu extends JFrame implements ActionListener
 					// Décomposeur
 					dec = new Decomposeur(line);
 
-					System.out.println(line);
-					System.out.println(dec.getString(1));
-
 					if(dec.getChar(0)=='S')
 					{
 						this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3), dec.getInt(4)));

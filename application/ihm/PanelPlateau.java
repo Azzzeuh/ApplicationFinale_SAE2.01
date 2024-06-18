@@ -87,7 +87,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
             // Si la longueur totale des segments et des espaces dépasse la distance totale
             if (longueurTotale > distanceTotale) 
             {
-                g.drawLine(x1, y1, x2, y2);
+                if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1 + 20, y1 + 22, x2 + 20, y2 + 22); }
+                else { g.drawLine(x1 + 20, y1 + 60, x2 + 20, y2 + 60); }
             }
 
             else
@@ -104,6 +105,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
                     int x2Segment = (int) (x1 + t2 * (x2 - x1));
                     int y2Segment = (int) (y1 + t2 * (y2 - y1));
 
+					// Déssine la route
                     if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 22, x2Segment + 20, y2Segment + 22); }
                     else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
                 }
