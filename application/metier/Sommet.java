@@ -31,6 +31,9 @@ public class Sommet
     public int getValeur()    { return this.valeur; }
     public ArrayList<Route> getListeRoute() {return this.listeRoute;}
 
+    public void setX(int x)   { if(x >= 0 && x <= 1000) this.x = x; }
+    public void setY(int y)   { if(y >= 0 && y <= 884 ) this.y = y; }
+
     public static void resetNbSommet() { nbSommet = 0; }
 
     public boolean ajouterRoute(Route route)

@@ -18,7 +18,7 @@ S	Mine_Vert	8	150	400
 S	Mine_Vert	4	200	155
 S	Mine_Vert	6	400	150
 S	Mine_Vert	2	500	250
-S	Mine_Vert	3	450	100
+S	Mine_Vert	3	350	100
 S	Mine_Rouge	5	700	666
 S	Mine_Rouge	1	750	756
 S	Mine_Rouge	2	790	549
@@ -30,9 +30,33 @@ S	Mine_Marron	3	200	345
 S	Mine_Marron	4	245	245
 S	Mine_Marron	5	250	100
 R	2	1	2
-R	1	1	3
-R	3	8	1
-R	1	3	4
-R	1	6	3
-R	1	4	5
-R	2	1	2
+R	1	2	3
+R	2	3	5
+R	2	3	6
+R	2	4	5
+R	1	6	7
+R	1	1	12
+R	2	12	13
+R	2	13	15
+R	2	15	14
+R	2	14	17
+R	2	4	24
+R	2	7	8
+R	1	8	9
+R	1	7	20
+R	2	20	16
+R	2	16	19
+R	2	15	26
+R	2	17	10
+R	1	12	28
+R	1	2	20
+R	2	10	18
+R	1	14	29
+R	2	29	30
+R	2	28	27
+R	2	25	17
+R	2	27	21
+R	2	27	31
+R	1	27	18
+R	2	21	11
+R	1	21	9

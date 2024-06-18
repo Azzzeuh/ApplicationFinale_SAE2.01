@@ -6,16 +6,6 @@ public class Route {
 	private Sommet sommetDepart;
 	private Sommet sommetArriver;
 
-	// Fabrique de Route
-	/*public static Route creerRoute(int nbSections, Sommet sommetDepart, Sommet sommetArriver)
-	{
-		if(nbSections <= 1 || nbSections >= 2)  { return null; }
-		else if(sommetDepart  == sommetArriver) { return null; }
-		else if(sommetDepart  == null)          { return null; }
-		else if(sommetArriver == null)          { return null; }
-		return new Route(nbSections, sommetDepart, sommetArriver); }
-	}*/
-
 
 	public Route(int nbSections, Sommet sommetDepart, Sommet sommetArriver)
 	{
