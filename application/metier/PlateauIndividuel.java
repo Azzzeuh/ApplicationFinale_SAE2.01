@@ -28,9 +28,8 @@ public class PlateauIndividuel {
 	}
 
 	// Accesseurs
-	public int getScore() {
-		return this.score;
-	}
+	public int getScore() { return this.score; }
+	public PlateauIndividuel getPlateauIndividuel() { return this; }
 
 	public boolean ajouterRessource(Jeton r) {
 

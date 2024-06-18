@@ -5,10 +5,13 @@ import application.metier.*;
 
 public class Controleur
 {
+	// Jeu 		metier;
+	private FramePlateau ihm;
 
 	public Controleur()
 	{
-		FramePlateau plt = new FramePlateau(this, 100, 100);
+		this.ihm = new FramePlateau(this, 450, 100);
+		// this.metier = new Jeu();
 	}
 
 	// Accesseurs

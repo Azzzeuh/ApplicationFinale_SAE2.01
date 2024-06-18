@@ -27,6 +27,12 @@ public class FrameMenu extends JFrame implements ActionListener
 	private ArrayList<Route> listRoute;
 
 	private PanelPlateau panelPlateau;
+	
+	private Joueur joueur1;
+	private Joueur joueur2;
+
+	private FrameJoueur frameJoueur1;
+	private FrameJoueur frameJoueur2;
 	/* Instructions */
 	/*--------------*/
 
@@ -163,6 +169,12 @@ public class FrameMenu extends JFrame implements ActionListener
 			Pioche pioche = new Pioche();
 
 			this.panelPlateau.dessinerRessource(pioche);
+			
+			this.joueur1 = new Joueur();
+			this.joueur2 = new Joueur();
+			
+			this.frameJoueur1 = new FrameJoueur(50, 100, panelPlateau, this.joueur1);
+			this.frameJoueur2 = new FrameJoueur(550, 100, panelPlateau, this.joueur2);
 		}
 
 	}
