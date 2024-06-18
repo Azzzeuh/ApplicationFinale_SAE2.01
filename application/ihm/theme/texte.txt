@@ -1,9 +1,38 @@
 S	NR	1	500	400
-S	Mine_Jaune	1	125	354
-S	Mine_Jaune	2	200	300
-S	Mine_Jaune	3	50	400
+S	Mine_Jaune	1	610	354
+S	Mine_Jaune	2	640	300
+S	Mine_Jaune	3	750	440
 S	Mine_Jaune	4	700	354
-S	Mine_Jaune	5	125	700
-S	Mine_Bleu	2	225	400
+S	Mine_Jaune	5	610	190
+S	Mine_Bleu	2	525	200
+S	Mine_Bleu	3	490	150
+S	Mine_Bleu	4	450	125
+S	Mine_Bleu	8	150	250
+S	Mine_Bleu	6	290	110
+S	Mine_Gris	0	400	400
+S	Mine_Gris	1	475	475
+S	Mine_Gris	3	300	325
+S	Mine_Gris	5	390	475
+S	Mine_Gris	2	450	250
+S	Mine_Vert	8	150	400
+S	Mine_Vert	4	200	155
+S	Mine_Vert	6	400	150
+S	Mine_Vert	2	500	250
+S	Mine_Vert	3	450	100
+S	Mine_Rouge	5	700	666
+S	Mine_Rouge	1	750	756
+S	Mine_Rouge	2	790	549
+S	Mine_Rouge	3	500	690
+S	Mine_Rouge	4	670	670
+S	Mine_Marron	1	290	200
+S	Mine_Marron	2	345	300
+S	Mine_Marron	3	200	345
+S	Mine_Marron	4	245	245
+S	Mine_Marron	5	250	100
 R	2	1	2
 R	1	1	3
+R	3	8	1
+R	1	3	4
+R	1	6	3
+R	1	4	5
+R	2	1	2

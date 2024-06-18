@@ -19,6 +19,9 @@ public class Pioche
 		else { return this.jetons.remove(0); }
 	}
 
+	public int getTaille() { return this.jetons.size(); }
+	public ArrayList<Jeton> getJetonList() { return this.jetons; }
+
 	private void initPioche()
 	{
 		for (int cpt = 0; cpt < 8; cpt++)

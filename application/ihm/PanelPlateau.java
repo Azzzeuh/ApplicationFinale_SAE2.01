@@ -9,9 +9,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import java.awt.*;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Panel;
 
 public class PanelPlateau extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
@@ -19,9 +16,11 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	private ArrayList<Sommet> sommetList;
 	private ArrayList<Route>  routeList;
+	private ArrayList<Jeton>  jetonList;
 
 	private Image             imgFond;
 	private Image             imgSommet;
+	private Image 			  imgJeton;
 
 	public PanelPlateau(Controleur ctrl, FrameMenu frameMenu)
 	{
@@ -29,6 +28,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 		this.sommetList = new ArrayList<>();
 		this.routeList  = new ArrayList<>();
+		this.jetonList  = new ArrayList<>();
 
 		this.imgFond = getToolkit().getImage ( ctrl.getImageFond() );
 	}
@@ -54,6 +54,12 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		Route r = new Route(sections, sommetDepart, sommetArriver);
 		this.routeList.add(r);
 		this.repaint();
+	}
+
+	public void dessinerRessource(Pioche pioche)
+	{
+		this.jetonList = pioche.getJetonList();
+        this.repaint();
 	}
 
 	public void paintComponent(Graphics g)	
@@ -127,9 +133,42 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 			{
 				this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + "_clair.png" );
 				g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 70, this );
+				g.drawString( sommet.getValeur() + "", sommet.getX() + 16, sommet.getY() + 24);
 			}
 
     	}
+
+		// Dessine les ressources et redessine les sommets avec les images opaques
+		if (!this.jetonList.isEmpty())
+		{
+			for (Sommet sommet : this.sommetList )
+        	{
+				// Dessiner sommet
+				if(sommet.getNom().equals("NR"))
+				{
+					this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
+					g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 44, this );
+				}
+
+				else
+				{
+					this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
+					g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 70, this );
+					g.drawString( sommet.getValeur() + "", sommet.getX() + 16, sommet.getY() + 24);
+				}
+
+    		}
+
+			for (int i = 1; i < this.sommetList.size(); i++) 
+			{
+				JetonRessource	j = (JetonRessource) this.jetonList.get(i-1).getType();
+				Sommet     		s = this.sommetList.get(i);
+
+				this.imgJeton = getToolkit().getImage ( "application/ihm/distrib_images/ressources/" + j.getLibCourt().toUpperCase() + ".png" );
+				g.drawImage ( this.imgJeton, s.getX() + 2 , s.getY() + 35, 35, 35, this);
+
+			}
+		}
     }
 
 
