@@ -1,4 +1,4 @@
-NouvelleRome	900	900
+S   NouvelleRome	900	900
 S	Mine_Jaune1	810	850
 S	Mine_Jaune2	850	900
 S	Mine_Jaune3	890	940
@@ -18,7 +18,7 @@ S	Mine_Vert2	910	1010
 S	Mine_Vert3	950	1050
 S	Mine_Vert4	990	1090
 S	Mine_Vert6	930	1030
-S	Mine_Vert8	970	1070
+S	Mine_Vert8  970	1070
 S	Mine_Rouge1	1010	1010
 S	Mine_Rouge2	1050	1050
 S	Mine_Rouge3	1090	1090
