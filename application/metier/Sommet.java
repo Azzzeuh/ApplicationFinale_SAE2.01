@@ -22,15 +22,6 @@ public class Sommet
         this.y = y;
     }
 
-    // Constructeur nouvelle rome
-    public Sommet(String nom, int x, int y)
-    {
-        this.nom = nom;
-        this.num = ++ nbSommet;
-        this.valeur = -1;
-        this.x = x;
-        this.y = y;
-    }
 
 	// Accesseurs  
     public String getNom()    { return this.nom;    }

@@ -119,20 +119,22 @@ public class FrameMenu extends JFrame implements ActionListener
 			{
 				sc = new Scanner    (new FileInputStream("application/ihm/theme/texte.txt"),  "UTF-8");
 
-				
 				while (sc.hasNextLine())
 				{
+					String line = sc.nextLine().trim();
+                	if (line.isEmpty()) {
+                    	continue; 
+                	}
 
 					// Décomposeur
-					dec = new Decomposeur(sc.nextLine());
+					dec = new Decomposeur(line);
 
+					System.out.println(line);
+					System.out.println(dec.getString(1));
 
 					if(dec.getChar(0)=='S')
 					{
-						if(dec.getInt(2) < 0)
-							this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3)));
-						else if(dec.getInt(2) >= 0)
-							this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3), dec.getInt(4)));
+						this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3), dec.getInt(4)));
 					}
 					if(dec.getChar(0)=='R')
 					{
@@ -152,8 +154,6 @@ public class FrameMenu extends JFrame implements ActionListener
 
 			this.panelPlateau.setSommetList(this.listSommet);
 			this.panelPlateau.setRouteList(this.listRoute);
-
-			System.out.println(this.listSommet.get(10).getNumSommet());
 
 			this.panelPlateau.repaint();
 		}

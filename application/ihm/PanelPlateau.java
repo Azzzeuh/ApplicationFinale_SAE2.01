@@ -41,9 +41,9 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		this.repaint();
 	}
 
-	public void dessinerSommet(String n, int x, int y)
+	public void dessinerSommet(String n,int valeur, int x, int y)
 	{
-		Sommet sommet = new Sommet(n, x, y);
+		Sommet sommet = new Sommet(n, valeur, x, y);
 		this.sommetList.add(sommet);
 		this.repaint();
 	}
