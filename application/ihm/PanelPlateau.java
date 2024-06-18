@@ -23,7 +23,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private Image             imgJeton;
 
 
-	private boolean partieEnCourt = false;
+	private boolean partieEnCours = false;
 
 	private Sommet sommetSelectionner;
 
@@ -69,7 +69,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	public void dessinerRessource(Pioche pioche)
 	{
 		this.jetonList = pioche.getJetonList();
-		this.partieEnCourt = true;
+		this.partieEnCours = true;
         this.repaint();
 	}
 
@@ -91,7 +91,6 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 			g.setColor(Color.BLACK);
 
 			int nbSections = route.getNbSections();
-			int espace = 10;
 
             int x1 = sommetDepart.getX();
             int y1 = sommetDepart.getY();
@@ -99,36 +98,35 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
             int y2 = sommetArriver.getY();
 
             double distanceTotale = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-            double longueurTotale = nbSections * 10 + (nbSections - 1) * espace;
+            double longueurSegment = (distanceTotale - (nbSections - 1)) / nbSections;
 
-            // Si la longueur totale des segments et des espaces dépasse la distance totale
-            if (longueurTotale > distanceTotale) 
+            for (int i = 0; i < nbSections; i++)
             {
-                if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1 + 20, y1 + 22, x2 + 20, y2 + 22); }
-                else { g.drawLine(x1 + 20, y1 + 60, x2 + 20, y2 + 60); }
-            }
+                double t1 = ( i * longueurSegment)                    / distanceTotale;
+                double t2 = ((i * longueurSegment) + longueurSegment) / distanceTotale;
 
-            else
-            {
-                double longueurSegment = (distanceTotale - (nbSections - 1) * espace) / nbSections;
+                int x1Segment = (int) (x1 + t1 * (x2 - x1));
+                int y1Segment = (int) (y1 + t1 * (y2 - y1));
+                int x2Segment = (int) (x1 + t2 * (x2 - x1));
+                int y2Segment = (int) (y1 + t2 * (y2 - y1));
 
-                for (int i = 0; i < nbSections; i++) 
-                {
-                    double t1 = (i * (longueurSegment + espace)) / distanceTotale;
-                    double t2 = ((i * (longueurSegment + espace)) + longueurSegment) / distanceTotale;
+				// Déssine la route
+				if (i % 2 == 0) 
+				{
+					// Dessiner une ligne
+					if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
+                	else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
+				}
 
-                    int x1Segment = (int) (x1 + t1 * (x2 - x1));
-                    int y1Segment = (int) (y1 + t1 * (y2 - y1));
-                    int x2Segment = (int) (x1 + t2 * (x2 - x1));
-                    int y2Segment = (int) (y1 + t2 * (y2 - y1));
-
-					// Déssine la route
-                    if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 22, x2Segment + 20, y2Segment + 22); }
-                    else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
-                }
-            }
+				else
+				{
+					// Dessiner un point et une ligne
+					g.fillOval((x1Segment+20) - 5, (y1Segment+60) - 5, 10, 10);
+					if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
+                	else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
+				}
+			}
         }
-        
 
 		// Dessiner sommet
         for (Sommet sommet : this.sommetList )
@@ -208,7 +206,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public void mouseDragged(MouseEvent e) 
 	{
-		if(partieEnCourt == true)
+		if(partieEnCours == true)
 		{
 			System.out.println("partie en cour");
 		}
@@ -216,8 +214,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		{
 			if( sommetSelectionner != null)
         	{
-		        sommetSelectionner.setX(e.getX() - nvX - 20);
-		        sommetSelectionner.setY(e.getY() - nvY - 20);
+		        sommetSelectionner.setX(e.getX() - nvX);
+		        sommetSelectionner.setY(e.getY() - nvY);
 
 		        for(Sommet s : sommetList)
 		        {
@@ -245,7 +243,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public void mousePressed(MouseEvent e) 
 	{
-		if(partieEnCourt == true)
+		if(partieEnCours == true)
 		{
 			System.out.println("partie en cour");
 		}
@@ -266,7 +264,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public void mouseReleased(MouseEvent e) 
 	{
-		if(partieEnCourt == true)
+		if(partieEnCours == true)
 		{
 			System.out.println("partie en cour");
 		}
