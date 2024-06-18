@@ -21,6 +21,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private ArrayList<Route>  routeList;
 
 	private Image             imgFond;
+	private Image             imgSommet;
 
 	public PanelPlateau(Controleur ctrl, FrameMenu frameMenu)
 	{
@@ -112,13 +113,12 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		// Dessiner sommet
         for (Sommet sommet : this.sommetList )
         {
-            g.setColor(Color.BLUE);
-            g.fillOval(sommet.getX() - 13, sommet.getY() - 13, 26, 26);
-            g.setColor(Color.BLACK);
-            g.drawOval(sommet.getX() - 13, sommet.getY() - 13, 26, 26);
-			g.drawString(sommet.getNom(), sommet.getX() - 16, sommet.getY() - 25);
-			g.drawString("x: " + sommet.getX() + " y: " + sommet.getY(), sommet.getX() + 16, sommet.getY() + 25);
-        }
+            // Dessiner sommet
+
+            this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
+            g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), this);
+
+    	}
     }
 
 
