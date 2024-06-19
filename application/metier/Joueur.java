@@ -2,13 +2,14 @@ package application.metier;
 
 public class Joueur {
 
-	private static int numJoueur;
+	private static int nbJoueur = 0;
+	private int numJoueur;
 	private int score;
 
 	private PlateauIndividuel plateauJoueur;
 
 	public Joueur() {
-		numJoueur++;
+		this.numJoueur = ++ nbJoueur;
 		this.score = 0;
 
 		this.plateauJoueur = null;

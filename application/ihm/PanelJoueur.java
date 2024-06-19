@@ -26,11 +26,7 @@ public class PanelJoueur extends JPanel implements ActionListener
 
 	public String getImageJoueur(int numJoueur) 
 	{ 
-		if (numJoueur == 1)
-			return "application/ihm/distrib_images/plateau_joueur_1";
-		else if (numJoueur == 2)
-			return "application/ihm/distrib_images/plateau_joueur_2";
-		return null;
+		return "application/ihm/distrib_images/plateau_joueur_" + numJoueur + ".png";
 	}
 
 	public void actionPerformed ( ActionEvent e )
@@ -45,7 +41,7 @@ public class PanelJoueur extends JPanel implements ActionListener
 		// Ajout de l'image du fond
 		if ( imgJoueur != null )
 		{
-			g.drawImage ( this.imgJoueur, 0 , 0, 550, 400, this);
+			g.drawImage ( this.imgJoueur, 0 , 0, 750, 400, this);
 		}
 	}
 }

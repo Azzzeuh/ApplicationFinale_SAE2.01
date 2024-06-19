@@ -10,7 +10,7 @@ public class Controleur
 
 	public Controleur()
 	{
-		this.ihm = new FramePlateau(this, 450, 100);
+		this.ihm = new FramePlateau(this, 50, 50);
 		// this.metier = new Jeu();
 	}
 

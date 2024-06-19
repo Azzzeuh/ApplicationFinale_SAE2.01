@@ -173,8 +173,8 @@ public class FrameMenu extends JFrame implements ActionListener
 			this.joueur1 = new Joueur();
 			this.joueur2 = new Joueur();
 			
-			this.frameJoueur1 = new FrameJoueur(50, 100, panelPlateau, this.joueur1);
-			this.frameJoueur2 = new FrameJoueur(550, 100, panelPlateau, this.joueur2);
+			this.frameJoueur1 = new FrameJoueur(this.getX(), 50, panelPlateau, this.joueur1);
+			this.frameJoueur2 = new FrameJoueur(this.getX(), this.frameJoueur1.getHeight() + 90, panelPlateau, this.joueur2);
 		}
 
 	}
