@@ -2,9 +2,10 @@ package application.metier;
 
 public class Route {
 
-	private int  nbSections;
+	private int    nbSections;
 	private Sommet sommetDepart;
 	private Sommet sommetArriver;
+	private int    joueur;
 
 
 	public Route(int nbSections, Sommet sommetDepart, Sommet sommetArriver)
@@ -12,6 +13,7 @@ public class Route {
 		this.nbSections    = nbSections;
 		this.sommetDepart  = sommetDepart;
 		this.sommetArriver = sommetArriver;
+		this.joueur        = 0;
 
 	}
 
@@ -26,8 +28,11 @@ public class Route {
 		return sRoute;
 	}
 
+	public void   setJoueur(int j)    { this.joueur = j; }
+
 	// Accesseurs
-	public int    getNbSections() { return this.nbSections;    }
+	public int    getNbSections()     { return this.nbSections;    }
 	public Sommet getSommetDepart()   { return this.sommetDepart;  }
 	public Sommet getSommetArriver()  { return this.sommetArriver; }
+	public int    getJoueur()         { return this.joueur;        }
 }

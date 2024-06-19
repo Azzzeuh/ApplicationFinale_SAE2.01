@@ -1,5 +1,7 @@
 package application.metier;
 
+import java.util.ArrayList;
+
 public class Joueur {
 
 	private static int nbJoueur = 0;
@@ -19,6 +21,7 @@ public class Joueur {
 		this.plateauJoueur = new PlateauIndividuel();
 	}
 
+
 	// Setter
 	public void setScore(int score) {
 		this.score = score;
@@ -28,15 +31,12 @@ public class Joueur {
 	public int getNumJoueur() {
 		return numJoueur;
 	}
-
 	public PlateauIndividuel getPlateauJoueur() {
 		return this.plateauJoueur;
 	}
-
 	public int getScore() {
 		return this.score;
 	}
-
 	public String toString() 
 	{
 		return "Joueur : " + this.numJoueur;

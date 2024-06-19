@@ -18,10 +18,12 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private ArrayList<Sommet> sommetJoueur;
 	private ArrayList<Route>  routeList;
 	private ArrayList<Jeton>  jetonList;
+	private ArrayList<Route>  routePossederList;
 
 	private Image             imgFond;
 	private Image             imgSommet;
 	private Image             imgJeton;
+	private Image             imgJoueur;
 
 	private	static int	tourJoueur;
 
@@ -110,6 +112,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		{
 			Sommet sommetDepart  = route.getSommetDepart();
 			Sommet sommetArriver = route.getSommetArriver();
+			this.imgJoueur = getToolkit().getImage ( "application/ihm/distrib_images/pion_joueur_" + route.getJoueur() + ".png" );
 			g.setColor(Color.BLACK);
 
 			int nbSections = route.getNbSections();
@@ -136,16 +139,21 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 				if (i % 2 == 0) 
 				{
 					// Dessiner une ligne
-					if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
-                	else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
+					g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60);
+					
 				}
 
 				else
 				{
 					// Dessiner un point et une ligne
 					g.fillOval((x1Segment+20) - 5, (y1Segment+60) - 5, 10, 10);
-					if(sommetDepart.getNom().equals("NR")) { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
-                	else { g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60); }
+                	g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60);
+				}
+				int midXSegment = (x1Segment + x2Segment) / 2;
+        		int midYSegment = (y1Segment + y2Segment) / 2;
+
+        		if (route.getJoueur() == 1 || route.getJoueur() == 2) {
+           		 g.drawImage(this.imgJoueur, (midXSegment + 20) - 5, (midYSegment + 60) - 5, 10, 10, this);
 				}
 			}
         }
@@ -255,6 +263,11 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 				if(tourJoueur == 1)
 				{
 					this.joueur1.getPlateauJoueur().ajouterRessource(sommetSelectionner.getJeton());
+					for(Route r : routeList)
+					{
+						if (r.getSommetArriver() == sommetSelectionner)
+							r.setJoueur(1);
+					}
 					tourJoueur = 2;
 					System.out.println(this.joueur1.getPlateauJoueur());
 					System.out.println(this.joueur1 + " " + tourJoueur);
@@ -262,6 +275,11 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 				else if (tourJoueur == 2)
 				{
 					this.joueur2.getPlateauJoueur().ajouterRessource(sommetSelectionner.getJeton());
+					for(Route r : routeList)
+					{
+						if (r.getSommetArriver() == sommetSelectionner)
+							r.setJoueur(2);
+					}
 					tourJoueur = 1;
 					System.out.println(this.joueur2.getPlateauJoueur());
 					System.out.println(this.joueur2 + " " + tourJoueur);
