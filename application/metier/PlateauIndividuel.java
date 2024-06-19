@@ -15,21 +15,35 @@ public class PlateauIndividuel {
 	public PlateauIndividuel() // création d'un plateau pour le joueur
 	{
 		this.plateau = new ArrayList<>(NB_LIGNE_MAX);
-		for (int i = 0; i < NB_LIGNE_MAX; i++) {
+		for (int i = 0; i < NB_LIGNE_MAX; i++) 
+		{
 			List<JetonRessource> ligne = new ArrayList<>(NB_COLONNE_MAX);
-			for (int j = 0; j < NB_COLONNE_MAX; j++) {
+			for (int j = 0; j < NB_COLONNE_MAX; j++) 
+			{
 				ligne.add(null);
 			}
 
-			plateau.add(ligne);
+			this.plateau.add(ligne);
 		}
 
 		this.score = 0;
 	}
 
 	// Accesseurs
-	public int getScore() { return this.score; }
+	public int getScore () { return this.score; }
 	public PlateauIndividuel getPlateauIndividuel() { return this; }
+	public List<List<JetonRessource>> getPlateauList() { return this.plateau; }
+	public int getLigMax() { return this.NB_LIGNE_MAX; }
+	public int getColMax() { return this.NB_COLONNE_MAX; }
+
+    public JetonRessource getJetonRessource(int lig, int col) 
+	{
+        if (lig >= 0 && lig < NB_LIGNE_MAX && col >= 0 && col < NB_COLONNE_MAX) {
+            return this.plateau.get(lig).get(col);
+        } else {
+            return null; 
+        }
+    }
 
 	public boolean ajouterRessource(Jeton r) {
 

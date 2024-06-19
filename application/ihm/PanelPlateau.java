@@ -5,17 +5,19 @@ import javax.swing.*;
 import application.Controleur;
 import application.metier.*;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
-import java.awt.*;
 
 public class PanelPlateau extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
 	private FrameMenu  frameMenu;
 
+	private static boolean sommetListPermanentVide = true;
+
 	private ArrayList<Sommet> sommetList;
 	private ArrayList<Sommet> sommetJoueur;
+	private ArrayList<Sommet> sommetListPermanent;
 	private ArrayList<Route>  routeList;
 	private ArrayList<Jeton>  jetonList;
 	private ArrayList<Route>  routePossederList;
@@ -45,6 +47,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		this.sommetJoueur 	= new ArrayList<>();
 		this.routeList  	= new ArrayList<>();
 		this.jetonList  	= new ArrayList<>();
+		this.sommetListPermanent = new ArrayList<>();
 
 		this.joueur1 = this.frameMenu.getJoueur(1);
 		this.joueur2 = this.frameMenu.getJoueur(2);
@@ -67,6 +70,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	{
 		Sommet sommet = new Sommet(n, valeur, x, y);
 		this.sommetList.add(sommet);
+
 		this.repaint();
 	}
 
@@ -101,6 +105,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	{
 		super.paintComponent(g);
 
+		Graphics2D g2d = (Graphics2D) g;
+
 		// Ajout de l'image du fond
 		if ( imgFond != null )
 		{
@@ -108,12 +114,14 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		}
 
 		// Dessiner les routes avec les tronçons
+		float epaisseur = 2.0f;
+		g2d.setStroke(new BasicStroke(epaisseur));
 		for(Route route : routeList)
 		{
 			Sommet sommetDepart  = route.getSommetDepart();
 			Sommet sommetArriver = route.getSommetArriver();
 			this.imgJoueur = getToolkit().getImage ( "application/ihm/distrib_images/pion_joueur_" + route.getJoueur() + ".png" );
-			g.setColor(Color.BLACK);
+			g2d.setColor(Color.BLACK);
 
 			int nbSections = route.getNbSections();
 
@@ -139,29 +147,29 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 				if (i % 2 == 0) 
 				{
 					// Dessiner une ligne
-					g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60);
+					g2d.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60);
 					
 				}
 
 				else
 				{
 					// Dessiner un point et une ligne
-					g.fillOval((x1Segment+20) - 5, (y1Segment+60) - 5, 10, 10);
-                	g.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60);
+					g2d.fillOval((x1Segment+20) - 5, (y1Segment+60) - 5, 10, 10);
+                	g2d.drawLine(x1Segment + 20, y1Segment + 60, x2Segment + 20, y2Segment + 60);
 				}
 				int midXSegment = (x1Segment + x2Segment) / 2;
         		int midYSegment = (y1Segment + y2Segment) / 2;
 
         		if (route.getJoueur() == 1 || route.getJoueur() == 2) {
-           		 g.drawImage(this.imgJoueur, (midXSegment + 20) - 5, (midYSegment + 60) - 5, 10, 10, this);
+           		 g2d.drawImage(this.imgJoueur, (midXSegment + 20) - 5, (midYSegment + 60) - 5, 10, 10, this);
 				}
 			}
         }
 
 		// Dessiner sommet
-        for (Sommet sommet : this.sommetList )
+        for (Sommet sommet : this.sommetListPermanent )
         {
-            // Dessiner sommet
+			System.out.println(sommet.getNom());
 			if(sommet.getNom().equals("NR"))
 			{
 				this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
@@ -176,22 +184,27 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 			}
 
     	}
+
+
 		// Dessine les ressources et redessine les sommets avec les images opaques
-		for (Sommet sommet : this.sommetList) {
-			if (sommet.getNom().equals("NR")) {
-				this.imgSommet = getToolkit().getImage("application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png");
-				g.drawImage(this.imgSommet, sommet.getX(), sommet.getY(), 40, 44, this);
-			} else {
-				this.imgSommet = getToolkit().getImage("application/ihm/distrib_images/transparent/" + sommet.getNom() + "_clair.png");
-				g.drawImage(this.imgSommet, sommet.getX(), sommet.getY(), 40, 70, this);
-				g.drawString(sommet.getValeur() + "", sommet.getX() + 16, sommet.getY() + 24);
-			}
-	
-			// Dessiner le jeton associé, s'il y en a un
-			if (this.partieEnCours && sommet.getJeton() != null) {
-				JetonRessource jr = (JetonRessource) sommet.getJeton().getType();
-				this.imgJeton = getToolkit().getImage("application/ihm/distrib_images/ressources/" + jr.getLibCourt().toUpperCase() + ".png");
-				g.drawImage(this.imgJeton, sommet.getX() + 2, sommet.getY() + 35, 35, 35, this);
+		if(partieEnCours)
+		{
+			for (Sommet sommet : this.sommetList) {
+				if (sommet.getNom().equals("NR")) {
+					this.imgSommet = getToolkit().getImage("application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png");
+					g.drawImage(this.imgSommet, sommet.getX(), sommet.getY(), 40, 44, this);
+				} else {
+					this.imgSommet = getToolkit().getImage("application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png");
+					g.drawImage(this.imgSommet, sommet.getX(), sommet.getY(), 40, 70, this);
+					g.drawString(sommet.getValeur() + "", sommet.getX() + 16, sommet.getY() + 24);
+				}
+		
+				// Dessiner le jeton associé, s'il y en a un
+				if (this.partieEnCours && sommet.getJeton() != null) {
+					JetonRessource jr = (JetonRessource) sommet.getJeton().getType();
+					this.imgJeton = getToolkit().getImage("application/ihm/distrib_images/ressources/" + jr.getLibCourt().toUpperCase() + ".png");
+					g.drawImage(this.imgJeton, sommet.getX() + 2, sommet.getY() + 35, 35, 35, this);
+				}
 			}
 		}
     }
@@ -200,7 +213,15 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 
 	// Setter
-	public void setSommetList(ArrayList<Sommet> list) { this.sommetList = list; }
+	public void setSommetList(ArrayList<Sommet> list) 
+	{ 
+		this.sommetList = list; 
+		if (sommetListPermanentVide) 
+		{
+			this.sommetListPermanent = new ArrayList<>(list);
+			sommetListPermanentVide = false;;
+		}
+	}
 	public void setRouteList (ArrayList<Route> list)  { this.routeList  = list; }
 
 	// Getter
