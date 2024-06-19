@@ -41,7 +41,7 @@ public class PanelJoueur extends JPanel implements ActionListener
 		// Ajout de l'image du fond
 		if ( imgJoueur != null )
 		{
-			g.drawImage ( this.imgJoueur, 0 , 0, 750, 400, this);
+			g.drawImage ( this.imgJoueur, 0 , 0, 550, 400, this);
 		}
 	}
 }

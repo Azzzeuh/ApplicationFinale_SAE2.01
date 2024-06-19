@@ -36,7 +36,7 @@ public class FrameMenu extends JFrame implements ActionListener
 	/* Instructions */
 	/*--------------*/
 
-	public FrameMenu(int x, int y, PanelPlateau panelPlateau)
+	public FrameMenu(int x, int y, PanelPlateau panelPlateau, Joueur joueur1, Joueur joueur2)
 	{
 		// Initialisation de la fenêtre
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -44,6 +44,9 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.setTitle ("Menu");
 		this.setLocation(x, y);
 		this.setLayout(new FlowLayout());
+
+		this.joueur1 = joueur1;
+		this.joueur2 = joueur2;
 
 		this.panelPlateau = panelPlateau;
 
@@ -169,10 +172,7 @@ public class FrameMenu extends JFrame implements ActionListener
 			Pioche pioche = new Pioche();
 
 			this.panelPlateau.dessinerRessource(pioche);
-			
-			this.joueur1 = new Joueur();
-			this.joueur2 = new Joueur();
-			
+				
 			this.frameJoueur1 = new FrameJoueur(this.getX(), 50, panelPlateau, this.joueur1);
 			this.frameJoueur2 = new FrameJoueur(this.getX(), this.frameJoueur1.getHeight() + 90, panelPlateau, this.joueur2);
 		}

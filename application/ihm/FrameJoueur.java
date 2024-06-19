@@ -16,7 +16,7 @@ public class FrameJoueur extends JFrame{
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLocation(x, y);
 		this.setTitle("FrameJoueur");
-		this.setSize(700, 436);
+		this.setSize(750, 436);
 
 		this.panelJoueur = new PanelJoueur(joueur);
 

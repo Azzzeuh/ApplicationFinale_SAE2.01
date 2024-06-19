@@ -15,6 +15,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private FrameMenu  frameMenu;
 
 	private ArrayList<Sommet> sommetList;
+	private ArrayList<Sommet> sommetJoueur;
 	private ArrayList<Route>  routeList;
 	private ArrayList<Jeton>  jetonList;
 
@@ -35,9 +36,10 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	{
 		this.frameMenu = frameMenu;
 
-		this.sommetList = new ArrayList<>();
-		this.routeList  = new ArrayList<>();
-		this.jetonList  = new ArrayList<>();
+		this.sommetList 	= new ArrayList<>();
+		this.sommetJoueur 	= new ArrayList<>();
+		this.routeList  	= new ArrayList<>();
+		this.jetonList  	= new ArrayList<>();
 
 		this.imgFond = getToolkit().getImage ( ctrl.getImageFond() );
 
@@ -69,6 +71,12 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	public void dessinerRessource(Pioche pioche)
 	{
 		this.jetonList = pioche.getJetonList();
+		for (int i = 0; i < this.sommetList.size(); i++)
+		{
+			Sommet s = this.sommetList.get(i);
+			Jeton  j = this.jetonList.get(i);
+			s.setJeton(j);
+		}
 		this.partieEnCours = true;
         this.repaint();
 	}
@@ -146,36 +154,22 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 			}
 
     	}
-
 		// Dessine les ressources et redessine les sommets avec les images opaques
-		if (!this.jetonList.isEmpty())
-		{
-			for (Sommet sommet : this.sommetList )
-        	{
-				// Dessiner sommet
-				if(sommet.getNom().equals("NR"))
-				{
-					this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
-					g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 44, this );
-				}
-
-				else
-				{
-					this.imgSommet = getToolkit().getImage ( "application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png" );
-					g.drawImage ( this.imgSommet, sommet.getX() , sommet.getY(), 40, 70, this );
-					g.drawString( sommet.getValeur() + "", sommet.getX() + 16, sommet.getY() + 24);
-				}
-
-    		}
-
-			for (int i = 1; i < this.sommetList.size(); i++) 
-			{
-				JetonRessource	j = (JetonRessource) this.jetonList.get(i-1).getType();
-				Sommet     		s = this.sommetList.get(i);
-
-				this.imgJeton = getToolkit().getImage ( "application/ihm/distrib_images/ressources/" + j.getLibCourt().toUpperCase() + ".png" );
-				g.drawImage ( this.imgJeton, s.getX() + 2 , s.getY() + 35, 35, 35, this);
-
+		for (Sommet sommet : this.sommetList) {
+			if (sommet.getNom().equals("NR")) {
+				this.imgSommet = getToolkit().getImage("application/ihm/distrib_images/transparent/" + sommet.getNom() + ".png");
+				g.drawImage(this.imgSommet, sommet.getX(), sommet.getY(), 40, 44, this);
+			} else {
+				this.imgSommet = getToolkit().getImage("application/ihm/distrib_images/transparent/" + sommet.getNom() + "_clair.png");
+				g.drawImage(this.imgSommet, sommet.getX(), sommet.getY(), 40, 70, this);
+				g.drawString(sommet.getValeur() + "", sommet.getX() + 16, sommet.getY() + 24);
+			}
+	
+			// Dessiner le jeton associé, s'il y en a un
+			if (this.partieEnCours && sommet.getJeton() != null) {
+				JetonRessource jr = (JetonRessource) sommet.getJeton().getType();
+				this.imgJeton = getToolkit().getImage("application/ihm/distrib_images/ressources/" + jr.getLibCourt().toUpperCase() + ".png");
+				g.drawImage(this.imgJeton, sommet.getX() + 2, sommet.getY() + 35, 35, 35, this);
 			}
 		}
     }
@@ -206,28 +200,21 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public void mouseDragged(MouseEvent e) 
 	{
-		if(partieEnCours == true)
-		{
-			System.out.println("partie en cour");
+		if( sommetSelectionner != null && !partieEnCours)
+    	{
+	        sommetSelectionner.setX(e.getX() - nvX);
+	        sommetSelectionner.setY(e.getY() - nvY);
+	        for(Sommet s : sommetList)
+	        {
+	            if ( s == sommetSelectionner )
+	            {
+	                s.setX(e.getX());
+	                s.setY(e.getY());
+	            }
+	        }
 		}
-		else
-		{
-			if( sommetSelectionner != null)
-        	{
-		        sommetSelectionner.setX(e.getX() - nvX);
-		        sommetSelectionner.setY(e.getY() - nvY);
-
-		        for(Sommet s : sommetList)
-		        {
-		            if ( s == sommetSelectionner )
-		            {
-		                s.setX(e.getX());
-		                s.setY(e.getY());
-		            }
-		        }
-			}
-        this.repaint();
-		}
+   		this.repaint();
+	
 	}
 
 
@@ -243,11 +230,19 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public void mousePressed(MouseEvent e) 
 	{
-		if(partieEnCours == true)
+		if(partieEnCours)
 		{
-			System.out.println("partie en cour");
+			int x = e.getX(); 
+		    int y = e.getY();
+		    sommetSelectionner = getSommetSelectionner(x, y);
+			System.out.println(sommetSelectionner);
+			if(sommetSelectionner != null && sommetSelectionner.getNumSommet() != 1)
+			{
+				this.sommetJoueur.add(sommetSelectionner);
+				this.sommetList.remove(sommetSelectionner);
+				this.repaint();
+			}
 		}
-		
 		else
 		{
 		    int x = e.getX(); 
@@ -266,7 +261,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	{
 		if(partieEnCours == true)
 		{
-			System.out.println("partie en cour");
+			System.out.println("partie en cours");
 		}
 		
 		else

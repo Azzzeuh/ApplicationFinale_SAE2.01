@@ -10,6 +10,7 @@ public class Sommet
     private         int    x;
     private         int    y;
     private         int    valeur;
+    private         Jeton  jeton;
 
     private ArrayList<Route> listeRoute;
 
@@ -20,19 +21,22 @@ public class Sommet
         this.valeur = valeur;
         this.x = x;
         this.y = y;
+        this.jeton = null;
     }
 
 
 	// Accesseurs  
-    public String getNom()    { return this.nom;    }
-    public int getNumSommet() { return this.num;    }
-    public int getX()         { return this.x;      }
-    public int getY()         { return this.y;      }
-    public int getValeur()    { return this.valeur; }
+    public String   getNom()        { return this.nom;    }
+    public int      getNumSommet()  { return this.num;    }
+    public int      getX()          { return this.x;      }
+    public int      getY()          { return this.y;      }
+    public int      getValeur()     { return this.valeur; }
+    public Jeton    getJeton()      { return this.jeton;  }
     public ArrayList<Route> getListeRoute() {return this.listeRoute;}
 
-    public void setX(int x)   { if(x >= 0 && x <= 1000) this.x = x; }
-    public void setY(int y)   { if(y >= 0 && y <= 884 ) this.y = y; }
+    public void setX    (int x)     { if(x >= 0 && x <= 1000) this.x = x; }
+    public void setY    (int y)     { if(y >= 0 && y <= 884 ) this.y = y; }
+    public void setJeton(Jeton j)   { if (j != null) this.jeton = j; }
 
     public static void resetNbSommet() { nbSommet = 0; }
 
