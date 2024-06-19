@@ -23,6 +23,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private Image             imgSommet;
 	private Image             imgJeton;
 
+	private	static int	tourJoueur;
 
 	private boolean partieEnCours = false;
 
@@ -31,6 +32,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private int nvX;
 	private int nvY;
 
+	private Joueur joueur1;
+	private Joueur joueur2;
 
 	public PanelPlateau(Controleur ctrl, FrameMenu frameMenu)
 	{
@@ -40,6 +43,10 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		this.sommetJoueur 	= new ArrayList<>();
 		this.routeList  	= new ArrayList<>();
 		this.jetonList  	= new ArrayList<>();
+
+		this.joueur1 = this.frameMenu.getJoueur(1);
+		this.joueur2 = this.frameMenu.getJoueur(2);
+		tourJoueur = 1;
 
 		this.imgFond = getToolkit().getImage ( ctrl.getImageFond() );
 
@@ -73,9 +80,16 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		this.jetonList = pioche.getJetonList();
 		for (int i = 0; i < this.sommetList.size(); i++)
 		{
-			Sommet s = this.sommetList.get(i);
-			Jeton  j = this.jetonList.get(i);
-			s.setJeton(j);
+			if(this.sommetList.get(i).getNumSommet() != 1)
+			{
+				Sommet s = this.sommetList.get(i);
+				Jeton  j = this.jetonList.get(i);
+				s.setJeton(j);
+			}
+			else if(this.sommetList.get(i).getNumSommet() == 1)
+			{
+				Sommet s = this.sommetList.get(i);
+			}
 		}
 		this.partieEnCours = true;
         this.repaint();
@@ -238,7 +252,20 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 			System.out.println(sommetSelectionner);
 			if(sommetSelectionner != null && sommetSelectionner.getNumSommet() != 1)
 			{
-				this.sommetJoueur.add(sommetSelectionner);
+				if(tourJoueur == 1)
+				{
+					this.joueur1.getPlateauJoueur().ajouterRessource(sommetSelectionner.getJeton());
+					tourJoueur = 2;
+					System.out.println(this.joueur1.getPlateauJoueur());
+					System.out.println(this.joueur1 + " " + tourJoueur);
+				}
+				else if (tourJoueur == 2)
+				{
+					this.joueur2.getPlateauJoueur().ajouterRessource(sommetSelectionner.getJeton());
+					tourJoueur = 1;
+					System.out.println(this.joueur2.getPlateauJoueur());
+					System.out.println(this.joueur2 + " " + tourJoueur);
+				}
 				this.sommetList.remove(sommetSelectionner);
 				this.repaint();
 			}
@@ -259,12 +286,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
 	public void mouseReleased(MouseEvent e) 
 	{
-		if(partieEnCours == true)
-		{
-			System.out.println("partie en cours");
-		}
-		
-		else
+		if(!partieEnCours)
 		{
 			sommetSelectionner = null;
 		}

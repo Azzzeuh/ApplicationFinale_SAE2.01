@@ -76,6 +76,13 @@ public class FrameMenu extends JFrame implements ActionListener
 
 	}
 
+	public Joueur getJoueur(int n) 
+	{ 
+		if ( n == 1 ) return this.joueur1;
+		if ( n == 2 ) return this.joueur2;
+		return null;
+	}
+
 	public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> listSommet)
 	{
 		if(this.listRoute.isEmpty())

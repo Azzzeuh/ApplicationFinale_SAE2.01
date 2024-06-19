@@ -21,8 +21,11 @@ public class FramePlateau extends JFrame {
 		this.setTitle("Plateau");
 		this.setLocation(x, y);
 		this.setSize(1000, 915);
+		
 		this.joueur1 = new Joueur();
 		this.joueur2 = new Joueur();
+		this.joueur1.creerPlateauJoueur();
+		this.joueur2.creerPlateauJoueur();
 
 		this.frameMenu = new FrameMenu(this.getWidth() + (int) this.getLocation().getX() + 30, (int) this.getLocation().getY(), null, joueur1, joueur2);
 		

@@ -81,30 +81,4 @@ public class PlateauIndividuel {
 		return resultat;
 	}
 
-	public static void main(String[] args) {
-		// Crée une instance de Plateau
-
-		PlateauIndividuel plateau = new PlateauIndividuel();
-		Pioche pioche = new Pioche();
-
-		// Affiche l'état initial du plateau
-
-		System.out.println("Etat initial du plateau : \n");
-		System.out.println(plateau.toString() + "\n");
-
-		System.out.println("Ajout des ressources à partir des jetons de la pioche\n");
-
-		for (int i = 0; i < 30; i++) {
-			String sRet;
-			Jeton j = pioche.tirerJeton();
-			sRet = j.toString();
-			sRet += plateau.ajouterRessource(j);
-			sRet = j.toString();
-			System.out.println(sRet);
-		}
-
-		System.out.println("\n\nEtat final du Plateau");
-		System.out.println(plateau.toString() + "\n");
-	}
-
 }

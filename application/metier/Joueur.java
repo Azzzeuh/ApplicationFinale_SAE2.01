@@ -36,4 +36,9 @@ public class Joueur {
 	public int getScore() {
 		return this.score;
 	}
+
+	public String toString() 
+	{
+		return "Joueur : " + this.numJoueur;
+	}
 }
