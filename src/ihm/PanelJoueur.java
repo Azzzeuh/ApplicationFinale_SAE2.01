@@ -94,7 +94,6 @@ public class PanelJoueur extends JPanel implements ActionListener, MouseListener
 					if (cpt < this.sommetJoueurList.size()) 
 					{
 						jr = (JetonRessource) this.sommetJoueurList.get(cpt).getJeton().getType();
-						System.out.println(jr);
 						if (jr.getLibCourt().equalsIgnoreCase("Nr")) 
 						{
 							nbNr++;
@@ -106,7 +105,6 @@ public class PanelJoueur extends JPanel implements ActionListener, MouseListener
 							if (jr != null) 
 							{
 								String nomRess = jr.getLibCourt().toUpperCase();
-								System.out.println(nomRess);
 								this.imgRess = getToolkit().getImage("src/ihm/images/ressources/" + nomRess + ".png");
 								g.drawImage(imgRess, x, y, 50, 50, this);
 								x += 52;
