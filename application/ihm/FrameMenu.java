@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileInputStream;
 
-import iut.algo.*;
-
 
 public class FrameMenu extends JFrame implements ActionListener
 {
@@ -68,9 +66,6 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.jouerJButton.addActionListener( this );
 
 
-		// Création des ArrayList
-
-
 
 		this.setVisible(true);
 
@@ -91,7 +86,7 @@ public class FrameMenu extends JFrame implements ActionListener
 				listSommet.remove(s);
 			Sommet.resetNbSommet();
 		}
-
+		//this.panelPlateau.setSommetList(listSommet);
 		return listSommet;
 	}
 
@@ -102,7 +97,7 @@ public class FrameMenu extends JFrame implements ActionListener
 			for(Route r : listRoute)
 				listRoute.remove(r);
 		}
-
+		//this.panelPlateau.setRouteList(listRoute);
 		return listRoute;
 	}
 
@@ -111,12 +106,17 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.panelPlateau = panel;
 	}
 
+
+	public void actionBouton(String btn) 
+	{
+		if( btn == "Charger" ) { this.chargerJButton.doClick(); }
+		if( btn == "Jouer"   ) { this.jouerJButton.doClick();   }
+	}
+
 	public void actionPerformed(ActionEvent e)
 	{
-		Decomposeur dec;
 		Scanner sc;
 
-		int nbSections;
 		Sommet sDepart  = null;
 		Sommet sArriver = null;
 
@@ -124,6 +124,11 @@ public class FrameMenu extends JFrame implements ActionListener
 		// Action du bouton charger
 		if(e.getSource() == this.chargerJButton)
 		{
+			this.viderListeSommet(listSommet);
+			this.viderListeRoute(listRoute);
+
+			this.panelPlateau.repaint();
+
 			if(!this.listSommet.isEmpty() && !this.listRoute.isEmpty())
 			{
 				this.viderListeRoute(this.listRoute);
@@ -143,20 +148,20 @@ public class FrameMenu extends JFrame implements ActionListener
                 	}
 
 					// Décomposeur
-					dec = new Decomposeur(line);
-					if(dec.getChar(0)=='S')
+					String[] mots = line.split("\t");
+					if(mots[0].charAt(0)=='S')
 					{
-						this.listSommet.add(new Sommet(dec.getString(1), dec.getInt(2), dec.getInt(3), dec.getInt(4)));
+						this.listSommet.add(new Sommet(mots[1], Integer.parseInt(mots[2]), Integer.parseInt(mots[3]), Integer.parseInt(mots[4])));
 					}
-					if(dec.getChar(0)=='R')
+					if(mots[0].charAt(0)=='R')
 					{
 						for(Sommet s: listSommet)
 						{
-							if(dec.getInt(2)==s.getNumSommet()) { sDepart  = s; }
-							if(dec.getInt(3)==s.getNumSommet()) { sArriver = s; }
-
+							if(Integer.parseInt(mots[2])==s.getNumSommet()) { sDepart  = s; }
+							if(Integer.parseInt(mots[3])==s.getNumSommet()) { sArriver = s; }
 						}
-						this.listRoute.add(new Route(dec.getInt(1), sDepart, sArriver));
+						this.listRoute.add(new Route(Integer.parseInt(mots[1]), sDepart, sArriver));
+					
 					}
 				}
 

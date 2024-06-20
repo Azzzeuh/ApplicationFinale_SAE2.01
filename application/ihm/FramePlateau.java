@@ -37,4 +37,6 @@ public class FramePlateau extends JFrame {
 
 		this.setVisible(true);
 	}
+
+	public FrameMenu getFrameMenu() { return this.frameMenu; }
 }

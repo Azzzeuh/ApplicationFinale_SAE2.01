@@ -1,11 +1,11 @@
 S	NR	1	500	400
 S	Mine_Jaune	1	610	354
-S	Mine_Jaune	2	640	300
-S	Mine_Jaune	3	750	440
-S	Mine_Jaune	4	700	354
-S	Mine_Jaune	5	610	190
-S	Mine_Bleu	2	525	200
-S	Mine_Bleu	3	490	150
+S	Mine_Jaune	2	740	300
+S	Mine_Jaune	3	850	440
+S	Mine_Jaune	4	700	480
+S	Mine_Jaune	5	810	190
+S	Mine_Bleu	2	625	200
+S	Mine_Bleu	3	540	150
 S	Mine_Bleu	4	450	125
 S	Mine_Bleu	8	150	250
 S	Mine_Bleu	6	290	110
@@ -33,7 +33,7 @@ R	2	1	2
 R	1	2	3
 R	2	3	5
 R	2	3	6
-R	2	4	5
+R	2	5	4
 R	1	6	7
 R	1	1	12
 R	2	12	13
