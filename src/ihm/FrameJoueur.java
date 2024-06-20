@@ -26,4 +26,6 @@ public class FrameJoueur extends JFrame{
 
 		this.setVisible(true);
 	}
+
+	public PanelJoueur getPanelJoueur() { return this.panelJoueur; }
 }

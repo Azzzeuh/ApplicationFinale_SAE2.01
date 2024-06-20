@@ -78,6 +78,13 @@ public class FrameMenu extends JFrame implements ActionListener
 		return null;
 	}
 
+	public PanelJoueur getPanelJoueur(int n) 
+	{ 
+		if ( n == 1 ) return this.frameJoueur1.getPanelJoueur();
+		if ( n == 2 ) return this.frameJoueur2.getPanelJoueur();
+		return null;
+	}
+
 	public ArrayList<Sommet> viderListeSommet(ArrayList<Sommet> listSommet)
 	{
 		if(this.listRoute.isEmpty())
@@ -187,6 +194,9 @@ public class FrameMenu extends JFrame implements ActionListener
 				
 			this.frameJoueur1 = new FrameJoueur(this.getX(), 50, panelPlateau, this.joueur1);
 			this.frameJoueur2 = new FrameJoueur(this.getX(), this.frameJoueur1.getHeight() + 90, panelPlateau, this.joueur2);
+		
+			this.panelPlateau.setPanelJoueur(this.frameJoueur1.getPanelJoueur(), 1);
+			this.panelPlateau.setPanelJoueur(this.frameJoueur2.getPanelJoueur(), 2);
 		}
 
 	}

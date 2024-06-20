@@ -12,11 +12,14 @@ import java.util.ArrayList;
 public class PanelPlateau extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
 	private FrameMenu  frameMenu;
+	private PanelJoueur panelJoueur1;
+	private PanelJoueur panelJoueur2;
 
 	private static boolean sommetListPermanentVide = true;
 
 	private ArrayList<Sommet>  sommetList;
-	private ArrayList<Sommet>  sommetJoueur;
+	private ArrayList<Sommet>  sommetJoueur1List;
+	private ArrayList<Sommet>  sommetJoueur2List;
 	private ArrayList<Sommet>  sommetListPermanent;
 	private ArrayList<Route>   routeList;
 	private ArrayList<Jeton>   jetonList;
@@ -44,7 +47,8 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		this.frameMenu = frameMenu;
 
 		this.sommetList          = new ArrayList<>();
-		this.sommetJoueur        = new ArrayList<>();
+		this.sommetJoueur1List 	= new ArrayList<>();
+		this.sommetJoueur2List 	= new ArrayList<>();
 		this.routeList           = new ArrayList<>();
 		this.jetonList  	     = new ArrayList<>();
 		this.sommetListPermanent = new ArrayList<>();
@@ -114,6 +118,19 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		if ( imgFond != null )
 		{
 			g.drawImage ( this.imgFond, 0 , 0, 1000, 884, this);
+			g.setColor(Color.WHITE);
+			
+			if(partieEnCours)
+			{
+				if (tourJoueur == 1)
+					g.drawString("Au tour de : Corporation Solaire", 10, 10);
+				else if (tourJoueur == 2)
+					g.drawString("Au tour de : Syndicat Astral", 10, 10);	
+			}
+			else
+			{
+				g.drawString("Au tour de :", 10, 10);
+			}
 		}
 
 		// Dessiner les routes avec les tronçons
@@ -229,6 +246,13 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		}
 	}
 	public void setRouteList (ArrayList<Route> list)  { this.routeList  = list; }
+	public void setPanelJoueur(PanelJoueur panel, int numJoueur) 
+	{
+		if (numJoueur == 1)
+			this.panelJoueur1 = panel;
+		else if ( numJoueur == 2)
+			this.panelJoueur2 = panel;
+	}
 
 	// Getter
     public Sommet getSommetSelectionner (int x, int y)
@@ -245,6 +269,15 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 
         return null;
     }
+
+	public ArrayList<Sommet> getSommetJoueurList(int numJoueur)
+	{
+		if (numJoueur == 1)
+			return this.sommetJoueur1List;
+		if (numJoueur == 2)
+			return this.sommetJoueur2List;
+		return null;
+	}
 
 
 	public void mouseDragged(MouseEvent e) 
@@ -281,6 +314,9 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	{
 		if(partieEnCours)
 		{
+			this.panelJoueur1.setPartieEnCours();
+			this.panelJoueur2.setPartieEnCours();
+			
 			int x = e.getX(); 
 		    int y = e.getY();
 			int numSommet = 0;
@@ -302,6 +338,9 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 								}
 							}
 						}
+						this.sommetJoueur1List.add(sommetSelectionner);
+						this.panelJoueur1.setSommetJoueurList(sommetJoueur1List);
+						this.panelJoueur1.redessinerPlateau();
 						tourJoueur = 2;
 					//System.out.println(this.joueur1.getPlateauJoueur());
 					//System.out.println(this.joueur1 + " " + tourJoueur);
@@ -321,6 +360,9 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 								}
 							}
 						}
+						this.sommetJoueur2List.add(sommetSelectionner);
+						this.panelJoueur2.setSommetJoueurList(sommetJoueur2List);
+						this.panelJoueur2.redessinerPlateau();
 						tourJoueur = 1;
 					//System.out.println(this.joueur2.getPlateauJoueur());
 					//System.out.println(this.joueur2 + " " + tourJoueur);
