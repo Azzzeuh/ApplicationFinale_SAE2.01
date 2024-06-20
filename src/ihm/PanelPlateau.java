@@ -16,6 +16,7 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 	private PanelJoueur panelJoueur2;
 
 	private static boolean sommetListPermanentVide = true;
+	private static boolean finDePartie = false;
 
 	private ArrayList<Sommet>  sommetList;
 	private ArrayList<Sommet>  sommetJoueur1List;
@@ -390,6 +391,12 @@ public class PanelPlateau extends JPanel implements ActionListener, MouseListene
 		        nvX = x - sommetSelectionner.getX();
 		        nvY = y - sommetSelectionner.getY();
 		    }
+		}
+
+		if (this.sommetList.isEmpty()) 
+		{
+			JOptionPane.showMessageDialog(this, "Fin de partie");
+			finDePartie = true;
 		}
 	}
 
