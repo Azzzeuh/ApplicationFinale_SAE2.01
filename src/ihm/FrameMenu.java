@@ -16,7 +16,7 @@ public class FrameMenu extends JFrame implements ActionListener
 {
 	/* Variables    */
 	/*--------------*/
-
+	private static boolean chargerActiver = false;
 	// Boutons
 	private JButton chargerJButton;
 	private JButton   jouerJButton;
@@ -51,6 +51,7 @@ public class FrameMenu extends JFrame implements ActionListener
 		// Initialisation des Boutton
 		this.chargerJButton = new JButton("CHARGER");
 		this.jouerJButton   = new JButton("JOUER");
+		this.jouerJButton.setEnabled(false);
 
 		// Initialisation des listes
 		this.listSommet = new ArrayList<>();
@@ -65,10 +66,7 @@ public class FrameMenu extends JFrame implements ActionListener
 		this.chargerJButton.addActionListener( this );
 		this.jouerJButton.addActionListener( this );
 
-
-
 		this.setVisible(true);
-
 	}
 
 	public Joueur getJoueur(int n) 
@@ -147,7 +145,7 @@ public class FrameMenu extends JFrame implements ActionListener
 			{
 				sc = new Scanner    (new FileInputStream("src/ihm/theme/texte.txt"),  "UTF-8");
 
-				while (sc.hasNextLine())
+				while (sc.hasNextLine() && chargerActiver == false)
 				{
 					String line = sc.nextLine().trim();
                 	if (line.isEmpty()) {
@@ -179,6 +177,8 @@ public class FrameMenu extends JFrame implements ActionListener
 			this.panelPlateau.setSommetList(this.listSommet);
 			this.panelPlateau.setRouteList(this.listRoute);
 
+			chargerActiver = true;
+			this.jouerJButton.setEnabled(true);
 			this.panelPlateau.repaint();
 		}
 
